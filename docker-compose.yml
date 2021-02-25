@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+    fairify:
+        restart: always
+        build: ./fairify
+        image: fairify
+        container_name: fairify
+        expose:
+            - 5000
+        networks:
+            - frontend
+    nginx:
+        restart: always
+        build: ./nginx
+        image: nginx
+        container_name: nginx-fairify
+        ports:
+            - 8081:8081
+        depends_on:
+            - fairify
