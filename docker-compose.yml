@@ -6,10 +6,15 @@ services:
         build: ./fairify
         image: fairify
         container_name: fairify
+        command: flask run
+        environment:      
+            - FLASK_APP=app.py
+            - FLASK_RUN_HOST=0.0.0.0
+            - FLASK_RUN_PORT=5000
+            - FLASK_DEBUG=1
+            - BINARY_LABEL_METRIC_API=${BINARY_LABEL_METRIC_API}
         expose:
             - 5000
-        networks:
-            - frontend
     nginx:
         restart: always
         build: ./nginx
