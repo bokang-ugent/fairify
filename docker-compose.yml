@@ -13,6 +13,9 @@ services:
             - FLASK_RUN_PORT=5000
             - FLASK_DEBUG=1
             - BINARY_LABEL_METRIC_API=${BINARY_LABEL_METRIC_API}
+            - REPRESENTATION_METRIC_API=${REPRESENTATION_METRIC_API}
+            - UPLOAD_FOLDER=${UPLOAD_FOLDER}
+            - ALLOWED_EXTENSIONS=${ALLOWED_EXTENSIONS}
         expose:
             - 5000
     nginx:
