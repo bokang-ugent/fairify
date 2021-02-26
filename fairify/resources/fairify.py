@@ -7,6 +7,9 @@ from flask_restful import Resource, reqparse
 from werkzeug.utils import secure_filename
 
 class BinaryLabelDatasetMetric(Resource):
+    def __init__(self, **kwargs):
+        self.ALLOWED_EXTENSIONS = kwargs.get("ALLOWED_EXTENSIONS")
+
     def demographic_parity(self, target, pred, group):
         return np.abs(np.mean(pred[group == 0]) - np.mean(pred[group==1]))
 
