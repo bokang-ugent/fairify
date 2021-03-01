@@ -38,11 +38,10 @@ def compute_group_prediction(A, group, model, reviewed_users, reviewed_items):
 
 def compute_representation_bias(X, y):
     X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, stratify=y)
-    svc = GridSearchCV(SVC(kernel="rbf", probability=True), param_grid={"C": [100, 10, 1, 1e-1, 1e-2]}, cv=3, verbose=4, n_jobs=-1)
+    svc = GridSearchCV(SVC(kernel="rbf", probability=True), param_grid={"C": [10, 1, 1e-1]}, cv=3, verbose=4, n_jobs=-1)
     svc.fit(X_tr, y_tr)
     tr_auc = get_scorer("roc_auc")(svc, X_tr, y_tr)
     te_auc = get_scorer("roc_auc")(svc, X_te, y_te)
-    print(tr_auc, te_auc)
     return {"tr_auc": tr_auc, "te_auc": te_auc}
 
 def compute_fairness_metrics(A, E, label, model, uid_feature_map, num_sample_items=1000):

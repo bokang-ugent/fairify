@@ -1,1 +1,3 @@
 curl --header "Content-Type: application/json"   --request POST   --data '{"pred": [0.1,0.2,0.3,0.4,0.5], "group": [1,1,1,0,0], "target": [1,0,0,1,1]}' http://193.190.127.245:8081/api/binary
+
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@cache/user_emb.pkl" http://193.190.127.245:8081/api/representation
